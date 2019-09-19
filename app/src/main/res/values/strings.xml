@@ -1,11 +1,24 @@
 <resources>
     <string name="app_name">Marketim</string>
+
+    <string name="info_remember_me">Beni Hatırla</string>
+
+    <!--Hints-->
     <string name="hint_username">Kullanıcı Adı</string>
     <string name="hint_password">Parola</string>
-    <string name="info_remember_me">Beni Hatırla</string>
-    <string name="button_login">Giriş Yap</string>
 
     <!--Errors-->
     <string name="error_required_field">Bu alan boş bırakılamaz!</string>
     <string name="error_login_fail">Kullanıcı Adı veya Şifre hatalı!</string>
+
+    <!--Buttons-->
+    <string name="button_logout">Çıkış Yap</string>
+    <string name="button_orders">Siparişlerim</string>
+    <string name="button_login">Giriş Yap</string>
+
+    <!--Dialog-->
+    <string name="dialog_logout_title">Çıkış Yap</string>
+    <string name="dialog_logout_message">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="dialog_logout_positive_button_title">Evet</string>
+    <string name="dialog_logout_negative_button_title">Hayır</string>
 </resources>

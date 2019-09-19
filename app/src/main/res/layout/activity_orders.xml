@@ -4,13 +4,44 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVertical50"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height"
+        app:layout_constraintStart_toEndOf="@id/glVertical50"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp"
+        android:text="@string/button_logout"
+        style="@style/PrimaryButton"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOrders"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/button_height"
+        style="@style/SecondaryButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/glVertical50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="10dp"
+        android:text="@string/button_orders"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Siparişlerim"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnLogout"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
