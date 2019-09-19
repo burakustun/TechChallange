@@ -11,6 +11,7 @@ import com.burakustun.core.extensions.navigate
 import com.burakustun.core.extensions.showSnackbar
 import com.burakustun.core.extensions.showToast
 import com.burakustun.core.utils.ClientPreferences
+import com.burakustun.techchallange.BaseActivity
 import com.burakustun.techchallange.R
 import com.burakustun.techchallange.noBarStyle
 import com.burakustun.techchallange.orders.OrdersActivity
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     private val viewModel : LoginViewModel by viewModel()
 

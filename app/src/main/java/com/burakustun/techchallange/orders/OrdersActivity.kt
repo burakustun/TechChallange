@@ -7,6 +7,8 @@ import androidx.lifecycle.Observer
 import com.burakustun.core.extensions.navigate
 import com.burakustun.core.extensions.showToast
 import com.burakustun.core.utils.ClientPreferences
+import com.burakustun.core.utils.LottieProgress
+import com.burakustun.techchallange.BaseActivity
 import com.burakustun.techchallange.R
 import com.burakustun.techchallange.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_orders.*
@@ -16,7 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 /**
  * Created by burakustun on 2019-09-19
  */
-class OrdersActivity : AppCompatActivity() {
+class OrdersActivity : BaseActivity() {
 
     private val viewModel: OrdersViewModel by viewModel()
 
@@ -37,7 +39,7 @@ class OrdersActivity : AppCompatActivity() {
         }
 
         btnOrders.setOnClickListener {
-            //TODO REFRESH ORDERS
+            viewModel.getOrders()
         }
     }
 
@@ -60,15 +62,16 @@ class OrdersActivity : AppCompatActivity() {
     private fun initObservers() {
         viewModel.ordersLiveData.observe(this, Observer { response ->
             response.onSuccess {
+                hideProgress()
                 showToast("data")
-                //TODO HIDE PROGRESS && SET RECYCLER ADAPTER
             }.onLoading {
-                //TODO SHOW PROGRESS
+                showProgress()
             }
         })
 
         viewModel.errorLiveData.observe(this, Observer {
-            //TODO HIDE PROGRESS AND SHOW ERROR
+            hideProgress()
+            showToast(it.error)
         })
 
     }

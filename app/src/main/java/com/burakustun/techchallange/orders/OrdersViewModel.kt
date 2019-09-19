@@ -24,6 +24,7 @@ class OrdersViewModel(private val interactor: OrdersInteractor, private val sche
         launchRequest {
             interactor.getOrders()
                 .subscribeOn(scheduler.io())
+                .doOnSubscribe { ordersMLD.value = Result.Loading }
                 .observeOn(scheduler.main())
                 .subscribe({
                     ordersMLD.value = Result.Success(it)

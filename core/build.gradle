@@ -40,6 +40,7 @@ ext {
     rxjava_version = "2.1.9"
     rxandroid_version = "2.0.2"
     rxkotlin_version = "2.3.0"
+    lottie_version = "3.0.7"
 }
 
 dependencies {
@@ -81,5 +82,9 @@ dependencies {
     api "io.reactivex.rxjava2:rxjava:$rxjava_version"
     api "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     api "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    //endregion
+
+    //region Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
     //endregion
 }
