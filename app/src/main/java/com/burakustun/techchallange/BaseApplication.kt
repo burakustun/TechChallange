@@ -4,6 +4,7 @@ import android.app.Application
 import com.burakustun.core.di.rxModule
 import com.burakustun.network.networkModule
 import com.burakustun.techchallange.login.loginModule
+import com.burakustun.techchallange.orders.ordersModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -16,7 +17,8 @@ class BaseApplication : Application() {
         rxModule,
         appModule,
         networkModule,
-        loginModule
+        loginModule,
+        ordersModule
     )
 
     override fun onCreate() {
