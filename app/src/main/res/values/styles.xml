@@ -16,7 +16,7 @@
         <item name="android:fontFamily">@font/lora</item>
     </style>
 
-    
+
     <style name="PrimaryButton" parent="Widget.MaterialComponents.Button">
         <item name="cornerRadius">@dimen/size_12</item>
         <item name="android:fontFamily">@font/lora_bold</item>
@@ -40,6 +40,36 @@
         <item name="android:fontFamily">@font/lora_bold</item>
         <item name="android:textSize">@dimen/font_size_36</item>
         <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="TextView.Header">
+        <item name="android:fontFamily">@font/lora_bold</item>
+        <item name="android:textSize">@dimen/font_size_36</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="TextView.Header2">
+        <item name="android:fontFamily">@font/lora_italic</item>
+        <item name="android:textSize">@dimen/font_size_24</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="TextView.Title">
+        <item name="android:fontFamily">@font/lora_bold_italic</item>
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="TextView.SubTitle">
+        <item name="android:fontFamily">@font/lora_italic</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="TextView.Header3">
+        <item name="android:fontFamily">@font/lora_bold</item>
+        <item name="android:textSize">@dimen/font_size_16</item>
+        <item name="android:textColor">@color/textColor</item>
     </style>
 
 </resources>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glVertical20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        style="@style/TextView.Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/glVertical20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="18" />
+
+    <TextView
+        android:id="@+id/tvMonth"
+        style="@style/TextView.Header2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/glVertical20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDate"
+        tools:text="Ekim" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/glVertical20"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/icn_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMarketName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@id/tvPrice"
+        app:layout_constraintStart_toEndOf="@id/glVertical20"
+        app:layout_constraintTop_toTopOf="@id/ivRight"
+        tools:text="Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1"
+        style="@style/TextView.Title"
+        />
+
+    <TextView
+        android:id="@+id/tvOrderName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@id/tvPrice"
+        app:layout_constraintStart_toStartOf="@id/tvMarketName"
+        app:layout_constraintTop_toBottomOf="@id/tvMarketName"
+        tools:text="DenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDeneme"
+        android:layout_marginTop="8dp"
+        style="@style/TextView.SubTitle"
+        />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="25 TL"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvMarketName"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        style="@style/TextView.Header2"
+        />
+
+    <!--app:layout_constraintTop_toBottomOf="@id/ivRight"
+        app:layout_constraintBottom_toTopOf="@id/tvOrderName"-->
+
+    <View
+        android:id="@+id/statusBox"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:background="#000"
+        app:layout_constraintStart_toStartOf="@id/tvMarketName"
+        app:layout_constraintTop_toBottomOf="@id/tvOrderName" />
+
+    <TextView
+        android:id="@+id/tvOrderStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/statusBox"
+        app:layout_constraintTop_toTopOf="@id/statusBox"
+        app:layout_constraintBottom_toBottomOf="@id/statusBox"
+        tools:text="Deneme"
+        android:layout_marginStart="8dp"
+        style="@style/TextView.Header3"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

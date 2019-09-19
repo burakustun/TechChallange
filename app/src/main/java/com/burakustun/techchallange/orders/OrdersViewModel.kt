@@ -20,6 +20,8 @@ class OrdersViewModel(private val interactor: OrdersInteractor, private val sche
 
     val ordersLiveData: LiveData<Result<List<OrderDomain>>> get() = ordersMLD
 
+    var orders : ArrayList<OrderDomain> = arrayListOf()
+
     fun getOrders() {
         launchRequest {
             interactor.getOrders()
@@ -27,7 +29,9 @@ class OrdersViewModel(private val interactor: OrdersInteractor, private val sche
                 .doOnSubscribe { ordersMLD.value = Result.Loading }
                 .observeOn(scheduler.main())
                 .subscribe({
-                    ordersMLD.value = Result.Success(it)
+                    orders.clear()
+                    orders.addAll(it)
+                    ordersMLD.value = Result.Success(orders)
                 }, {
                     errorLiveData.value = Result.Error("Bir hata ile karşılaşıldı")
                 })

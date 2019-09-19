@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.burakustun.core.extensions.navigate
 import com.burakustun.core.extensions.showToast
 import com.burakustun.core.utils.ClientPreferences
@@ -20,6 +22,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class OrdersActivity : BaseActivity() {
 
+    lateinit var adapter : OrdersRecyclerAdapter
+
     private val viewModel: OrdersViewModel by viewModel()
 
     private val clientPreferences: ClientPreferences by inject()
@@ -28,9 +32,16 @@ class OrdersActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders)
 
+        initOrdersRecycler()
         initObservers()
         initListeners()
         viewModel.getOrders()
+    }
+
+    private fun initOrdersRecycler() {
+        adapter = OrdersRecyclerAdapter(this, viewModel.orders)
+        rvOrders.adapter = adapter
+        rvOrders.layoutManager = LinearLayoutManager(this,RecyclerView.VERTICAL,false)
     }
 
     private fun initListeners() {
@@ -63,7 +74,7 @@ class OrdersActivity : BaseActivity() {
         viewModel.ordersLiveData.observe(this, Observer { response ->
             response.onSuccess {
                 hideProgress()
-                showToast("data")
+                adapter.notifyDataSetChanged()
             }.onLoading {
                 showProgress()
             }
