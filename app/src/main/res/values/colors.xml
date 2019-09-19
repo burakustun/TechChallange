@@ -9,4 +9,8 @@
     <color name="thunder">#4C4C4C</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
+
+    <color name="pageBackground">#eee</color>
+    <color name="textColor">#303841</color>
+    <color name="hintColor">#3a4750</color>
 </resources>
