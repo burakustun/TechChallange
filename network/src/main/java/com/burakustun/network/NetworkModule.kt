@@ -1,6 +1,6 @@
 package com.burakustun.network
 
-import com.burakustun.network.factories.CommonFactory
+import com.burakustun.network.factories.OrderFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -18,7 +18,7 @@ val networkModule = module {
     single { createHttpLoggingInterceptor(get()) }
     single { createOkHttpClient() }
     single { createRetrofit(get()) }
-    single { createWebService<CommonFactory>(get()) }
+    single { createWebService<OrderFactory>(get()) }
 }
 
 
