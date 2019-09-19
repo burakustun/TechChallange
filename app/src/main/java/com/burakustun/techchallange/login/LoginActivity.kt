@@ -1,16 +1,19 @@
 package com.burakustun.techchallange.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.burakustun.core.extensions.navigate
 import com.burakustun.core.extensions.showSnackbar
 import com.burakustun.core.extensions.showToast
 import com.burakustun.core.utils.ClientPreferences
 import com.burakustun.techchallange.R
 import com.burakustun.techchallange.noBarStyle
+import com.burakustun.techchallange.orders.OrdersActivity
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_login.*
 import org.koin.android.ext.android.inject
@@ -31,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         initListeners()
 
         if (clientPreferences.isRememberMe()){
-            //TODO REDIRECT TO OTHER PAGE
+            redirectToOrders()
         }
     }
 
@@ -47,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
                 if (viewModel.loginUser(etUserName.text.toString(),etPassword.text.toString())){
                     //save remember preference
                     viewModel.setRememberUser(swRemember.isChecked)
-                    //TODO REDIRECT TO OTHER PAGE
+                    redirectToOrders()
                 }
                 else{
                     //SHOW WRONG INFO MESSAGE
@@ -58,6 +61,11 @@ class LoginActivity : AppCompatActivity() {
                 initializeErrors(errors)
             }
         }
+    }
+
+    private fun redirectToOrders() {
+        navigate(this@LoginActivity,OrdersActivity::class.java)
+        finish()
     }
 
     private fun resetErrors(){
