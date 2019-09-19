@@ -8,4 +8,14 @@ import android.content.Context
 
 class ClientPreferences(context: Context) : PreferencesManager(context) {
 
+    private val KEY_REMEMBER_ME = "REMEMBER_ME"
+
+    fun isRememberMe() : Boolean {
+        return getBooleanValue(KEY_REMEMBER_ME)
+    }
+
+    fun setRememberMe(rememberMe : Boolean) {
+        putBoolean(KEY_REMEMBER_ME,rememberMe)
+    }
+
 }

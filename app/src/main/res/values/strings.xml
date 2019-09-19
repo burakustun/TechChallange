@@ -4,4 +4,8 @@
     <string name="hint_password">Parola</string>
     <string name="info_remember_me">Beni Hatırla</string>
     <string name="button_login">Giriş Yap</string>
+
+    <!--Errors-->
+    <string name="error_required_field">Bu alan boş bırakılamaz!</string>
+    <string name="error_login_fail">Kullanıcı Adı veya Şifre hatalı!</string>
 </resources>
