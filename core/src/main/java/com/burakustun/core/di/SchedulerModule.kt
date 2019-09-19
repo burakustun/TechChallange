@@ -7,5 +7,5 @@ import org.koin.dsl.module
  */
 
 val rxModule = module {
-    single { SchedulerImp() }
+    single { SchedulerImp() as Scheduler }
 }
