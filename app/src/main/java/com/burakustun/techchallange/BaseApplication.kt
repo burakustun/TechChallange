@@ -3,6 +3,7 @@ package com.burakustun.techchallange
 import android.app.Application
 import com.burakustun.core.di.rxModule
 import com.burakustun.network.networkModule
+import com.burakustun.techchallange.login.loginModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -11,7 +12,12 @@ import org.koin.core.context.startKoin
  */
 class BaseApplication : Application() {
 
-    private val moduleList = listOf(rxModule, appModule, networkModule)
+    private val moduleList = listOf(
+        rxModule,
+        appModule,
+        networkModule,
+        loginModule
+    )
 
     override fun onCreate() {
         super.onCreate()
