@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.burakustun.core.extensions.showToast
+import com.burakustun.data.domain.ProductState
 import com.burakustun.techchallange.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,12 +25,21 @@ class OrdersActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-
+        
     }
 
     private fun initObservers() {
-        viewModel.ordersLiveData.observe(this, Observer {
-            showToast("data")
+        viewModel.ordersLiveData.observe(this, Observer { response ->
+            response.onSuccess {
+                showToast("data")
+                //TODO HIDE PROGRESS && SET RECYCLER ADAPTER
+            }.onLoading {
+                //TODO SHOW PROGRESS
+            }
+        })
+
+        viewModel.errorLiveData.observe(this, Observer {
+            //TODO HIDE PROGRESS AND SHOW ERROR
         })
 
     }

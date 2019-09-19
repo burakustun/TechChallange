@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.burakustun.core.di.Scheduler
 import com.burakustun.core.viewmodel.BaseViewModel
 import com.burakustun.core.viewmodel.Result
+import com.burakustun.data.domain.OrderDomain
+import com.burakustun.data.dto.OrderDto
 
 
 /**
@@ -14,9 +16,9 @@ import com.burakustun.core.viewmodel.Result
 class OrdersViewModel(private val interactor: OrdersInteractor, private val scheduler: Scheduler) :
     BaseViewModel() {
 
-    private val ordersMLD = MutableLiveData<List<Any>>()
+    private val ordersMLD = MutableLiveData<Result<List<OrderDomain>>>()
 
-    val ordersLiveData: LiveData<List<Any>> get() = ordersMLD
+    val ordersLiveData: LiveData<Result<List<OrderDomain>>> get() = ordersMLD
 
     fun getOrders() {
         launchRequest {
@@ -24,7 +26,7 @@ class OrdersViewModel(private val interactor: OrdersInteractor, private val sche
                 .subscribeOn(scheduler.io())
                 .observeOn(scheduler.main())
                 .subscribe({
-                    ordersMLD.value = it
+                    ordersMLD.value = Result.Success(it)
                 }, {
                     errorLiveData.value = Result.Error("Bir hata ile karşılaşıldı")
                 })

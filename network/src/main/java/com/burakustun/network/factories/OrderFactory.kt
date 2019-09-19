@@ -1,5 +1,7 @@
 package com.burakustun.network.factories
 
+import com.burakustun.data.domain.OrderDomain
+import com.burakustun.data.dto.OrderDto
 import io.reactivex.Single
 import retrofit2.http.GET
 
@@ -9,6 +11,6 @@ import retrofit2.http.GET
 interface OrderFactory {
 
     @GET("/")
-    fun getOrders() : Single<List<Any>>
+    fun getOrders() : Single<List<OrderDto>>
 
 }

@@ -1,9 +1,11 @@
 package com.burakustun.core.extensions
 
 import java.security.MessageDigest
+import java.text.DateFormatSymbols
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
+import java.time.Month
 import java.util.*
 
 /**
@@ -44,4 +46,8 @@ fun String.toMD5(): String {
 
 fun ByteArray.toHex(): String {
     return joinToString("") { "%02x".format(it) }
+}
+
+fun String.toMonthName(): String {
+    return DateFormatSymbols.getInstance(Locale.getDefault()).months[this.toInt()-1]
 }
