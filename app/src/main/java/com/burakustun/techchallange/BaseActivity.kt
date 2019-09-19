@@ -11,7 +11,9 @@ abstract class BaseActivity : AppCompatActivity() {
     protected var progressBar: LottieProgress? = null
 
     fun showProgress(){
-        progressBar = LottieProgress(this)
+        if (progressBar == null){
+            progressBar = LottieProgress(this)
+        }
         progressBar?.show()
     }
 
