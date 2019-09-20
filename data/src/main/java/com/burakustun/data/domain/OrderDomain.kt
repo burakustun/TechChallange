@@ -13,7 +13,8 @@ data class OrderDomain(
     val orderName: String,
     val productPrice: Double,
     val productState: ProductState,
-    val productDetail: ProductDetailDomain
+    val productDetail: ProductDetailDomain,
+    var isDetailSectionShowing : Boolean
 )
 
 enum class ProductState(val code: String) {

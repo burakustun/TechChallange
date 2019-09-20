@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glVertical20"
@@ -17,30 +18,34 @@
         style="@style/TextView.Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/glVertical20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="18" />
 
     <TextView
         android:id="@+id/tvMonth"
         style="@style/TextView.Header2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@id/glVertical20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDate"
         tools:text="Ekim" />
 
     <View
+        android:id="@+id/verticalDivider"
         android:layout_width="1dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="#000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/glVertical20"
+        app:layout_constraintStart_toEndOf="@id/tvMonth"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -54,47 +59,41 @@
 
     <TextView
         android:id="@+id/tvMarketName"
+        style="@style/TextView.Title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toStartOf="@id/tvPrice"
-        app:layout_constraintStart_toEndOf="@id/glVertical20"
+        app:layout_constraintStart_toEndOf="@id/verticalDivider"
         app:layout_constraintTop_toTopOf="@id/ivRight"
-        tools:text="Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1"
-        style="@style/TextView.Title"
-        />
+        tools:text="Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1Market 1" />
 
     <TextView
         android:id="@+id/tvOrderName"
+        style="@style/TextView.SubTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ellipsize="middle"
         android:singleLine="true"
         app:layout_constraintEnd_toStartOf="@id/tvPrice"
         app:layout_constraintStart_toStartOf="@id/tvMarketName"
         app:layout_constraintTop_toBottomOf="@id/tvMarketName"
-        tools:text="DenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDeneme"
-        android:layout_marginTop="8dp"
-        style="@style/TextView.SubTitle"
-        />
+        tools:text="DenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDenemeDeneme" />
 
     <TextView
         android:id="@+id/tvPrice"
+        style="@style/TextView.Header2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="25 TL"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvMarketName"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        style="@style/TextView.Header2"
-        />
-
-    <!--app:layout_constraintTop_toBottomOf="@id/ivRight"
-        app:layout_constraintBottom_toTopOf="@id/tvOrderName"-->
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvMarketName"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="25 TL" />
 
     <View
         android:id="@+id/statusBox"
@@ -107,14 +106,85 @@
 
     <TextView
         android:id="@+id/tvOrderStatus"
-        android:layout_width="wrap_content"
+        style="@style/TextView.Header3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="@id/statusBox"
+        app:layout_constraintEnd_toStartOf="@id/tvPrice"
         app:layout_constraintStart_toEndOf="@id/statusBox"
         app:layout_constraintTop_toTopOf="@id/statusBox"
-        app:layout_constraintBottom_toBottomOf="@id/statusBox"
-        tools:text="Deneme"
-        android:layout_marginStart="8dp"
-        style="@style/TextView.Header3"
-        />
+        tools:text="Deneme" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clDetailSection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:alpha="1"
+        android:background="#efefef"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMonth">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineDetailSection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
+
+
+        <View
+            android:id="@+id/detailSectionBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#E1E3E4"
+            android:minHeight="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvOrderDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvPrice2"
+            app:layout_constraintStart_toStartOf="@id/guidelineDetailSection"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Sıvı Sabun 250 ml" />
+
+        <TextView
+            android:id="@+id/tvPrice2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvOrderDetail"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="25 TL" />
+
+        <View
+            android:id="@+id/seperator"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#000"
+            app:layout_constraintEnd_toEndOf="@id/tvPrice2"
+            app:layout_constraintStart_toStartOf="@id/guidelineDetailSection"
+            app:layout_constraintTop_toBottomOf="@id/tvPrice2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

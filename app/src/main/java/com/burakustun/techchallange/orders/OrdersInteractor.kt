@@ -26,7 +26,8 @@ class OrdersInteractor(private val orderFactory: OrderFactory) {
                     ProductDetailDomain(
                         order.productDetail.orderDetail,
                         order.productDetail.summaryPrice
-                    )
+                    ),
+                    false
                 )
             }
         }
