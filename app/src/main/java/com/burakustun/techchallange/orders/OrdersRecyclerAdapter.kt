@@ -29,61 +29,77 @@ class OrdersRecyclerAdapter(
     override fun getItemCount(): Int = orderList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-        val currentItem = orderList[position]
-
-        holder.tvDate.text = currentItem.date
-        holder.tvMonth.text = currentItem.month
-        holder.tvMarketName.text = currentItem.marketName
-        holder.tvOrderName.text = currentItem.orderName
-        holder.tvPrice.text = "${currentItem.productDetail.summaryPrice} TL"
-        holder.tvPrice2.text = "${currentItem.productPrice} TL"
-        holder.tvOrderStatus.text = currentItem.productState.code
-        holder.tvOrderDetail.text = currentItem.productDetail.orderDetail
-
-        var color = 0
-
-        when (currentItem.productState) {
-            ProductState.PREPARING -> color = ContextCompat.getColor(context, R.color.sun)
-            ProductState.ON_THE_ROAD -> color = ContextCompat.getColor(context, R.color.apple)
-            ProductState.WAIT_FOR_APPROVAL -> color =
-                ContextCompat.getColor(context, R.color.colorPrimary)
-            else -> {
-            }
-        }
-
-        holder.statusBox.setBackgroundColor(color)
-        holder.tvOrderStatus.setTextColor(color)
-
-        if (currentItem.isDetailSectionShowing) {
-            holder.clDetailSection.alpha = 1f
-        } else {
-            holder.clDetailSection.alpha = 0f
-        }
-
-        holder.itemView.setOnClickListener {
-            if (currentItem.isDetailSectionShowing) {
-                holder.clDetailSection.animate().alpha(0f)
-                    .setInterpolator(AccelerateDecelerateInterpolator()).duration = 1000
-            } else {
-                holder.clDetailSection.animate().alpha(1f)
-                    .setInterpolator(AccelerateDecelerateInterpolator()).duration = 1000
-            }
-
-            currentItem.isDetailSectionShowing = !currentItem.isDetailSectionShowing
-        }
+        holder.bind(orderList, position)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvDate = itemView.findViewById<TextView>(R.id.tvDate)
-        val tvMonth = itemView.findViewById<TextView>(R.id.tvMonth)
-        val tvMarketName = itemView.findViewById<TextView>(R.id.tvMarketName)
-        val tvOrderName = itemView.findViewById<TextView>(R.id.tvOrderName)
-        val tvPrice = itemView.findViewById<TextView>(R.id.tvPrice)
-        val statusBox = itemView.findViewById<View>(R.id.statusBox)
-        val tvOrderStatus = itemView.findViewById<TextView>(R.id.tvOrderStatus)
-        val clDetailSection = itemView.findViewById<ConstraintLayout>(R.id.clDetailSection)
-        val tvOrderDetail = itemView.findViewById<TextView>(R.id.tvOrderDetail)
-        val tvPrice2 = itemView.findViewById<TextView>(R.id.tvPrice2)
+        private val tvDate = itemView.findViewById<TextView>(R.id.tvDate)
+        private val tvMonth = itemView.findViewById<TextView>(R.id.tvMonth)
+        private val tvMarketName = itemView.findViewById<TextView>(R.id.tvMarketName)
+        private val tvOrderName = itemView.findViewById<TextView>(R.id.tvOrderName)
+        private val tvPrice = itemView.findViewById<TextView>(R.id.tvPrice)
+        private val statusBox = itemView.findViewById<View>(R.id.statusBox)
+        private val tvOrderStatus = itemView.findViewById<TextView>(R.id.tvOrderStatus)
+        private val clDetailSection = itemView.findViewById<ConstraintLayout>(R.id.clDetailSection)
+        private val tvOrderDetail = itemView.findViewById<TextView>(R.id.tvOrderDetail)
+        private val tvPrice2 = itemView.findViewById<TextView>(R.id.tvPrice2)
+
+        fun bind(orderList: List<OrderDomain>, position: Int) {
+
+            val currentItem = orderList[position]
+
+            setInformations(currentItem)
+            initListeners(currentItem)
+        }
+
+        private fun initListeners(currentItem: OrderDomain) {
+            itemView.setOnClickListener {
+
+                //animate view related to flag state
+                if (currentItem.isDetailSectionShowing) {
+                    clDetailSection.animate().alpha(0f)
+                        .setInterpolator(AccelerateDecelerateInterpolator()).duration = 1000
+                } else {
+                    clDetailSection.animate().alpha(1f)
+                        .setInterpolator(AccelerateDecelerateInterpolator()).duration = 1000
+                }
+
+                //mutate the flag
+                currentItem.isDetailSectionShowing = !currentItem.isDetailSectionShowing
+            }
+        }
+
+        private fun setInformations(currentItem: OrderDomain) {
+
+            //set texts
+            tvDate.text = currentItem.date
+            tvMonth.text = currentItem.month
+            tvMarketName.text = currentItem.marketName
+            tvOrderName.text = currentItem.orderName
+            tvPrice.text = "${currentItem.productDetail.summaryPrice} TL"
+            tvPrice2.text = "${currentItem.productPrice} TL"
+            tvOrderStatus.text = currentItem.productState.code
+            tvOrderDetail.text = currentItem.productDetail.orderDetail
+
+            //decide which color to show and set
+            var color = 0
+            when (currentItem.productState) {
+                ProductState.PREPARING -> color = ContextCompat.getColor(context, R.color.sun)
+                ProductState.ON_THE_ROAD -> color = ContextCompat.getColor(context, R.color.apple)
+                ProductState.WAIT_FOR_APPROVAL -> color =
+                    ContextCompat.getColor(context, R.color.colorPrimary)
+                else -> {
+                }
+            }
+            statusBox.setBackgroundColor(color)
+            tvOrderStatus.setTextColor(color)
+
+            //set detail section alpha related to show flag
+            if (currentItem.isDetailSectionShowing) {
+                clDetailSection.alpha = 1f
+            } else {
+                clDetailSection.alpha = 0f
+            }
+        }
     }
 }

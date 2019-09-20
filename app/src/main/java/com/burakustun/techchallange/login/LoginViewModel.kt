@@ -1,6 +1,5 @@
 package com.burakustun.techchallange.login
 
-import android.widget.EditText
 import com.burakustun.core.utils.ClientPreferences
 import com.burakustun.core.viewmodel.BaseViewModel
 import com.google.android.material.textfield.TextInputLayout
@@ -14,12 +13,12 @@ class LoginViewModel(private val clientPreferences: ClientPreferences) : BaseVie
     private val acceptedUserName = "kariyer"
     private val acceptedPassword = "2019ADev"
 
-    fun validateInputs(vararg inputs : TextInputLayout) : List<String> {
+    fun validateInputs(vararg inputs: TextInputLayout): List<String> {
 
         val errors = mutableListOf<String>()
 
         inputs.forEach { input ->
-            if (input.editText?.text.toString().isEmpty()){
+            if (input.editText?.text.toString().isEmpty()) {
                 errors.add(input.tag.toString())
             }
         }
@@ -27,11 +26,11 @@ class LoginViewModel(private val clientPreferences: ClientPreferences) : BaseVie
         return errors.toList()
     }
 
-    fun loginUser(userName : String, password : String) : Boolean {
+    fun loginUser(userName: String, password: String): Boolean {
         return userName == acceptedUserName && password == acceptedPassword
     }
 
-    fun setRememberUser(rememberMe : Boolean){
+    fun setRememberUser(rememberMe: Boolean) {
         clientPreferences.setRememberMe(rememberMe)
     }
 

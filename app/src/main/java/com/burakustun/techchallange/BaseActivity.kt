@@ -10,14 +10,14 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected var progressBar: LottieProgress? = null
 
-    fun showProgress(){
-        if (progressBar == null){
+    fun showProgress() {
+        if (progressBar == null) {
             progressBar = LottieProgress(this)
         }
         progressBar?.show()
     }
 
-    fun hideProgress(){
+    fun hideProgress() {
         progressBar?.hide()
     }
 

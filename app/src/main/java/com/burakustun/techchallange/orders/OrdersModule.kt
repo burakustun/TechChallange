@@ -8,5 +8,5 @@ import org.koin.dsl.module
 
 val ordersModule = module {
     single { OrdersInteractor(get()) }
-    single { OrdersViewModel(get(),get()) }
+    single { OrdersViewModel(get(), get()) }
 }

@@ -48,6 +48,7 @@ fun ByteArray.toHex(): String {
     return joinToString("") { "%02x".format(it) }
 }
 
+//convert month number string to month name ex : 04 -> April
 fun String.toMonthName(): String {
     return DateFormatSymbols.getInstance(Locale.getDefault()).months[this.toInt()-1]
 }

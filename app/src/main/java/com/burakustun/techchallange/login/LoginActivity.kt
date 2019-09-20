@@ -1,15 +1,8 @@
 package com.burakustun.techchallange.login
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
-import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 import com.burakustun.core.extensions.navigate
 import com.burakustun.core.extensions.showSnackbar
-import com.burakustun.core.extensions.showToast
 import com.burakustun.core.utils.ClientPreferences
 import com.burakustun.techchallange.BaseActivity
 import com.burakustun.techchallange.R
@@ -22,9 +15,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : BaseActivity() {
 
-    private val viewModel : LoginViewModel by viewModel()
+    private val viewModel: LoginViewModel by viewModel()
 
-    private val clientPreferences : ClientPreferences by inject()
+    private val clientPreferences: ClientPreferences by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +27,8 @@ class LoginActivity : BaseActivity() {
 
         initListeners()
 
-        if (clientPreferences.isRememberMe()){
+        //check remember me flag if it is set to remember redirect to orders
+        if (clientPreferences.isRememberMe()) {
             redirectToOrders()
         }
     }
@@ -44,20 +38,19 @@ class LoginActivity : BaseActivity() {
 
             resetErrors()
             //GET TAG OF EMPTY INPUTS
-            val errors = viewModel.validateInputs(tilUserName,tilPassword)
+            val errors = viewModel.validateInputs(tilUserName, tilPassword)
 
             //IF NO ERROR
-            if (errors.isNullOrEmpty()){
-                if (viewModel.loginUser(etUserName.text.toString(),etPassword.text.toString())){
+            if (errors.isNullOrEmpty()) {
+                if (viewModel.loginUser(etUserName.text.toString(), etPassword.text.toString())) {
                     //save remember preference
                     viewModel.setRememberUser(swRemember.isChecked)
                     redirectToOrders()
-                }
-                else{
+                } else {
                     //SHOW WRONG INFO MESSAGE
                     btnLogin.showSnackbar(getString(R.string.error_login_fail))
                 }
-            }else{
+            } else {
                 //SHOW ERRORS
                 initializeErrors(errors)
             }
@@ -65,11 +58,12 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun redirectToOrders() {
-        navigate(this@LoginActivity,OrdersActivity::class.java)
+        //call navigate extension for page transitions
+        navigate(this@LoginActivity, OrdersActivity::class.java)
         finish()
     }
 
-    private fun resetErrors(){
+    private fun resetErrors() {
         tilUserName.error = null
         tilPassword.error = null
     }
@@ -77,7 +71,7 @@ class LoginActivity : BaseActivity() {
     private fun initializeErrors(errors: List<String>) {
         errors.forEach { tag ->
             //get view by tag
-            val view : TextInputLayout = clRoot.findViewWithTag(tag)
+            val view: TextInputLayout = clRoot.findViewWithTag(tag)
             //set error text
             view.error = getString(R.string.error_required_field)
         }

@@ -15,14 +15,15 @@ class OrdersInteractor(private val orderFactory: OrderFactory) {
 
     fun getOrders(): Single<List<OrderDomain>> {
         return orderFactory.getOrders().map {
+            //map dto to domain
             it.map { order ->
                 OrderDomain(
                     order.date,
-                    order.month.toMonthName(),
+                    order.month.toMonthName(), //converts string to month name
                     order.marketName,
                     order.orderName,
                     order.productPrice,
-                    getProductState(order.productState.toLowerCase(Locale.getDefault())),
+                    getProductState(order.productState.toLowerCase(Locale.getDefault())), //get enum value
                     ProductDetailDomain(
                         order.productDetail.orderDetail,
                         order.productDetail.summaryPrice
@@ -33,6 +34,7 @@ class OrdersInteractor(private val orderFactory: OrderFactory) {
         }
     }
 
+    //return enum value according to string returned by service call
     private fun getProductState(stateString: String): ProductState {
         return when (stateString) {
             "yolda" -> ProductState.ON_THE_ROAD
