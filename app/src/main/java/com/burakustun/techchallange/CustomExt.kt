@@ -20,7 +20,3 @@ fun Activity.noBarStyle() {
         WindowManager.LayoutParams.FLAG_FULLSCREEN
     )
 }
-
-fun TextView.setText(string: String){
-    Log.i("denme","deneme")
-}
