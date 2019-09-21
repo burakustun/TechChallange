@@ -27,4 +27,12 @@ dependencies {
     implementation project(":core")
     implementation project(":network")
     implementation project(":data")
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    // required if you want to use Mockito for unit tests
+    testImplementation 'org.mockito:mockito-core:3.0.0'
+    // required if you want to use Mockito for Android tests
+    androidTestImplementation 'org.mockito:mockito-android:3.0.0'
 }
